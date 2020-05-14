@@ -58,6 +58,7 @@ public class clientes extends javax.swing.JFrame {
         txtnit = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         TXTVENDEDOR = new javax.swing.JTextField();
+        label_e = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -149,6 +150,7 @@ public class clientes extends javax.swing.JFrame {
         jLabel7.setText("VENDEDOR");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
         jPanel1.add(TXTVENDEDOR, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, 140, -1));
+        jPanel1.add(label_e, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -172,11 +174,11 @@ public class clientes extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try {
-             Class.forName("com.mysql.jdbc.Driver");
-            Connection conectar = DriverManager.getConnection("jdbc:mysql://localhost/sic","root","");
+           //  Class.forName("com.mysql.jdbc.Driver");
+           // Connection conectar = DriverManager.getConnection("jdbc:mysql://localhost/sicClientes","root","");
 
-            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost/sic","root","");
-            java.sql.PreparedStatement pst = cn.prepareStatement("insert into clientes values(?,?,?,?,?,?,?)");
+            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost/sicClientes","root","");
+            java.sql.PreparedStatement pst = cn.prepareStatement("insert into clientes1 values(?,?,?,?,?,?,?)");
 
             pst.setString(1, "0");
             pst.setString(2, txtnombre.getText().trim());
@@ -195,7 +197,7 @@ public class clientes extends javax.swing.JFrame {
             txtdireccion.setText("");
             txtTelefono.setText("");
 
-            Label_status.setText("Registro exitoso");
+            label_e.setText("Registro exitoso");
 
         } catch (Exception e) {
 
@@ -207,8 +209,8 @@ public class clientes extends javax.swing.JFrame {
         try {
             String ID = txtid.getText().trim();
 
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/sic", "root", "");
-            PreparedStatement pst = cn.prepareStatement("update clientes set codigo_cliente=?, nombre_cliente=?, direccion_cliente=?,nit_cliente = ?, telefono_cliente = ?, codigo_vendedor = ?,estatus_cliente = ? where ID = " + ID);
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/sicClientes", "root", "");
+            PreparedStatement pst = cn.prepareStatement("update clientes1 set codigo_cliente=?, nombre_cliente=?, direccion_cliente=?,nit_cliente = ?, telefono_cliente = ?, codigo_vendedor = ?,estatus_cliente = ? where ID = " + ID);
 
             pst.setString(1, txtnombre.getText().trim());
             pst.setString(2, txtnit.getText().trim());
@@ -219,7 +221,7 @@ public class clientes extends javax.swing.JFrame {
 
             pst.executeUpdate();
 
-            Label_status.setText("Modificación exitosa.");
+            label_e.setText("Modificación exitosa.");
 
         } catch (Exception e) {
         }
@@ -229,8 +231,8 @@ public class clientes extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/sic", "root", "");
-            PreparedStatement pst = cn.prepareStatement("delete from clientes where ID = ?");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/sicClientes", "root", "");
+            PreparedStatement pst = cn.prepareStatement("delete from clientes1 where ID = ?");
 
             pst.setString(1, txtid.getText().trim());
             pst.executeUpdate();
@@ -241,7 +243,7 @@ public class clientes extends javax.swing.JFrame {
             txtdireccion.setText("");
             txtTelefono.setText("");
 
-            Label_status.setText("Registro eliminado.");
+            label_e.setText("Registro eliminado.");
 
         } catch (Exception e) {
         }
@@ -263,8 +265,8 @@ public class clientes extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/sic", "root", "");
-            PreparedStatement pst = cn.prepareStatement("select * from clientes where ID = ?");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/sicClientes", "root", "");
+            PreparedStatement pst = cn.prepareStatement("select * from clientes1 where ID = ?");
             pst.setString(1, txtid.getText().trim());
 
             ResultSet rs = pst.executeQuery();
@@ -340,6 +342,7 @@ public class clientes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel label_e;
     private javax.swing.JLabel label_estatus;
     private javax.swing.JTextField txtTelefono;
     private javax.swing.JTextField txtclinete;

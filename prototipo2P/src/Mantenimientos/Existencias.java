@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Mantenimientos;
 
 import ContenedorMDI.ContenedorMDI;
@@ -52,6 +48,7 @@ public class Existencias extends javax.swing.JFrame {
         txtproducto = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtsaldoExistencia = new javax.swing.JTextField();
+        L_ESTATUS = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,7 +61,7 @@ public class Existencias extends javax.swing.JFrame {
 
         jLabel2.setText("CODIGO_BODEGA");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
-        jPanel1.add(txtcodBodega, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 140, -1));
+        jPanel1.add(txtcodBodega, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 140, -1));
 
         jButton1.setText("REGISTRAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -72,7 +69,7 @@ public class Existencias extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, -1, -1));
 
         jButton2.setText("MODIFICAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -80,7 +77,7 @@ public class Existencias extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, -1, -1));
 
         jButton3.setText("ELIMINAR");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -88,7 +85,7 @@ public class Existencias extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, 90, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, 90, -1));
 
         jButton5.setText("SALIR");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -114,7 +111,7 @@ public class Existencias extends javax.swing.JFrame {
 
         jLabel6.setText("ID");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
-        jPanel1.add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 140, -1));
+        jPanel1.add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 140, -1));
 
         jButton4.setText("BUSCAR");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -126,23 +123,24 @@ public class Existencias extends javax.swing.JFrame {
 
         jLabel8.setText("CODIGO_PRODUCTO");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
-        jPanel1.add(txtproducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 140, -1));
+        jPanel1.add(txtproducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 140, -1));
 
         jLabel7.setText("SALDO_EXISTENCIA");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
-        jPanel1.add(txtsaldoExistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 140, -1));
+        jPanel1.add(txtsaldoExistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 140, -1));
+        jPanel1.add(L_ESTATUS, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -152,26 +150,27 @@ public class Existencias extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        try {
-             Class.forName("com.mysql.jdbc.Driver");
-            Connection conectar = DriverManager.getConnection("jdbc:mysql://localhost/sic","root","");
+       try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conectar = DriverManager.getConnection("jdbc:mysql://localhost/sicexistencia1","root","");
 
-            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost/sic","root","");
-            java.sql.PreparedStatement pst = cn.prepareStatement("insert into existencias values(?,?,?,?)");
+            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost/sicexistencia1","root","");
+            java.sql.PreparedStatement pst = cn.prepareStatement("insert into existencias1 values(?,?,?,?)");
 
             pst.setString(1, "0");
             pst.setString(2, txtcodBodega.getText().trim());
-            pst.setString(2, txtproducto.getText().trim());
-            pst.setString(3, txtsaldoExistencia.getText().trim());
-         
+            pst.setString(3, txtproducto.getText().trim());
+            pst.setString(4, txtsaldoExistencia.getText().trim());
+           
 
             pst.executeUpdate();
 
-           txtcodBodega.setText("");
+            txtcodBodega.setText("");
             txtproducto.setText("");
             txtsaldoExistencia.setText("");
+          
 
-            Label_status.setText("Registro exitoso");
+            L_ESTATUS.setText("Registro exitoso");
 
         } catch (Exception e) {
 
@@ -183,8 +182,8 @@ public class Existencias extends javax.swing.JFrame {
         try {
             String ID = txtid.getText().trim();
 
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/sic", "root", "");
-            PreparedStatement pst = cn.prepareStatement("update existencias set codigo_bodega=?, codigo_producto=?, saldo_existencia=? where ID = " + ID);
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/sicexistencia1", "root", "");
+            PreparedStatement pst = cn.prepareStatement("update existencias1 set codigo_bodega=?, codigo_producto=?, saldo_existencia=? where ID = " + ID);
 
             pst.setString(1, txtcodBodega.getText().trim());
             pst.setString(2, txtproducto.getText().trim());
@@ -192,7 +191,7 @@ public class Existencias extends javax.swing.JFrame {
 
             pst.executeUpdate();
 
-            Label_status.setText("Modificación exitosa.");
+            L_ESTATUS.setText("Modificación exitosa.");
 
         } catch (Exception e) {
         }
@@ -202,8 +201,8 @@ public class Existencias extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/sic", "root", "");
-            PreparedStatement pst = cn.prepareStatement("delete from existencias where ID = ?");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/sicexistencia1", "root", "");
+            PreparedStatement pst = cn.prepareStatement("delete from existencias1 where ID = ?");
 
             pst.setString(1, txtid.getText().trim());
             pst.executeUpdate();
@@ -211,7 +210,7 @@ public class Existencias extends javax.swing.JFrame {
             txtproducto.setText("");
             txtsaldoExistencia.setText("");
 
-            Label_status.setText("Registro eliminado.");
+            L_ESTATUS.setText("Registro eliminado.");
 
         } catch (Exception e) {
         }
@@ -232,8 +231,8 @@ public class Existencias extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/sic", "root", "");
-            PreparedStatement pst = cn.prepareStatement("select * from existencias where ID = ?");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/sicexistencia1", "root", "");
+            PreparedStatement pst = cn.prepareStatement("select * from existencias1 where ID = ?");
             pst.setString(1, txtid.getText().trim());
 
             ResultSet rs = pst.executeQuery();
@@ -289,6 +288,7 @@ public class Existencias extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel L_ESTATUS;
     private javax.swing.JLabel Label_status;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

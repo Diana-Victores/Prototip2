@@ -38,7 +38,7 @@ public class Lineas extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtcodigoLINEA = new javax.swing.JTextField();
+        txtcodigoline = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -53,6 +53,7 @@ public class Lineas extends javax.swing.JFrame {
         txtnombre = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtestatus = new javax.swing.JTextField();
+        L_estatus = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,7 +66,7 @@ public class Lineas extends javax.swing.JFrame {
 
         jLabel2.setText("CODIGO_LINEA");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
-        jPanel1.add(txtcodigoLINEA, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 140, -1));
+        jPanel1.add(txtcodigoline, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 140, -1));
 
         jButton1.setText("REGISTRAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -132,6 +133,7 @@ public class Lineas extends javax.swing.JFrame {
         jLabel7.setText("ESTATUS");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
         jPanel1.add(txtestatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 140, -1));
+        jPanel1.add(L_estatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -153,25 +155,26 @@ public class Lineas extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conectar = DriverManager.getConnection("jdbc:mysql://localhost/sic","root","");
+       try {
+          //  Class.forName("com.mysql.jdbc.Driver");
+           // Connection conectar = DriverManager.getConnection("jdbc:mysql://localhost/siclineas","root","");
 
-            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost/sic","root","");
-            java.sql.PreparedStatement pst = cn.prepareStatement("insert into lineas values(?,?,?,?,?,?,?)");
+            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost/siclineas","root","");
+            java.sql.PreparedStatement pst = cn.prepareStatement("insert into lineas1 values(?,?,?,?)");
 
             pst.setString(1, "0");
-            pst.setString(2, txtcodigoLINEA.getText().trim());
+            pst.setString(2, txtcodigoline.getText().trim());
             pst.setString(3, txtnombre.getText().trim());
             pst.setString(4, txtestatus.getText().trim());
-
+           
             pst.executeUpdate();
 
-            txtcodigoLINEA.setText("");
+            txtcodigoline.setText("");
             txtnombre.setText("");
             txtestatus.setText("");
+          
 
-            Label_status.setText("Registro exitoso");
+            L_estatus.setText("Registro exitoso");
 
         } catch (Exception e) {
 
@@ -183,16 +186,16 @@ public class Lineas extends javax.swing.JFrame {
         try {
             String ID = txtid.getText().trim();
 
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/sic", "root", "");
-            PreparedStatement pst = cn.prepareStatement("update lineas set codigo_linea=?, nombre_linea=?, estatus_linea=? where ID = " + ID);
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siclineas", "root", "");
+            PreparedStatement pst = cn.prepareStatement("update lineas1 set codigo_linea=?, nombre_linea=?, estatus_linea=? where ID = " + ID);
 
-            pst.setString(1, txtcodigoLINEA.getText().trim());
+            pst.setString(1, txtcodigoline.getText().trim());
             pst.setString(2, txtnombre.getText().trim());
             pst.setString(3, txtestatus.getText().trim());
 
             pst.executeUpdate();
 
-            Label_status.setText("Modificación exitosa.");
+            L_estatus.setText("Modificación exitosa.");
 
         } catch (Exception e) {
         }
@@ -202,16 +205,16 @@ public class Lineas extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/sic", "root", "");
-            PreparedStatement pst = cn.prepareStatement("delete from lineas where ID = ?");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siclineas", "root", "");
+            PreparedStatement pst = cn.prepareStatement("delete from lineas1 where ID = ?");
 
             pst.setString(1, txtid.getText().trim());
             pst.executeUpdate();
-            txtcodigoLINEA.setText("");
+            txtcodigoline.setText("");
             txtnombre.setText("");
             txtestatus.setText("");
 
-            Label_status.setText("Registro eliminado.");
+            L_estatus.setText("Registro eliminado.");
 
         } catch (Exception e) {
         }
@@ -232,15 +235,15 @@ public class Lineas extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/sic", "root", "");
-            PreparedStatement pst = cn.prepareStatement("select * from lineas where ID = ?");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siclineas", "root", "");
+            PreparedStatement pst = cn.prepareStatement("select * from lineas1 where ID = ?");
             pst.setString(1, txtid.getText().trim());
 
             ResultSet rs = pst.executeQuery();
 
             if(rs.next()){
 
-                txtcodigoLINEA.setText(rs.getString("codigo_linea"));
+                txtcodigoline.setText(rs.getString("codigo_linea"));
                 txtnombre.setText(rs.getString("nombre_linea"));
                 txtestatus.setText(rs.getString("estatus_linea"));
 
@@ -289,6 +292,7 @@ public class Lineas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel L_estatus;
     private javax.swing.JLabel Label_status;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -303,7 +307,7 @@ public class Lineas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel label_estatus;
-    private javax.swing.JTextField txtcodigoLINEA;
+    private javax.swing.JTextField txtcodigoline;
     private javax.swing.JTextField txtestatus;
     private javax.swing.JTextField txtid;
     private javax.swing.JTextField txtnombre;

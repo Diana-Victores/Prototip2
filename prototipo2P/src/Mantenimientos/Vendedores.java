@@ -58,6 +58,7 @@ public class Vendedores extends javax.swing.JFrame {
         TXTNOMBRE = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         TXTDIRECCION = new javax.swing.JTextField();
+        l_estatus = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,10 +80,10 @@ public class Vendedores extends javax.swing.JFrame {
 
         jLabel5.setText("ESTATUS");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, -1, -1));
-        jPanel1.add(TXTVENDEDOR, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 140, -1));
-        jPanel1.add(TXTTELEFONO, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 140, -1));
-        jPanel1.add(TXTNIT, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, 140, -1));
-        jPanel1.add(TXTESTAUS, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 140, -1));
+        jPanel1.add(TXTVENDEDOR, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 140, -1));
+        jPanel1.add(TXTTELEFONO, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 140, -1));
+        jPanel1.add(TXTNIT, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 140, -1));
+        jPanel1.add(TXTESTAUS, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, 140, -1));
 
         jButton1.setText("REGISTRAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -90,7 +91,7 @@ public class Vendedores extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 60, -1, -1));
 
         jButton2.setText("MODIFICAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -98,7 +99,7 @@ public class Vendedores extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, -1, -1));
 
         jButton3.setText("ELIMINAR");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -106,7 +107,7 @@ public class Vendedores extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, 90, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, 90, -1));
 
         jButton5.setText("SALIR");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -132,7 +133,7 @@ public class Vendedores extends javax.swing.JFrame {
 
         jLabel6.setText("ID");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
-        jPanel1.add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 140, -1));
+        jPanel1.add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 140, -1));
 
         jButton4.setText("BUSCAR");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -140,15 +141,16 @@ public class Vendedores extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, 80, -1));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, 80, -1));
 
         jLabel8.setText("NOMBRE");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
-        jPanel1.add(TXTNOMBRE, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 140, -1));
+        jPanel1.add(TXTNOMBRE, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 140, -1));
 
         jLabel7.setText("DIRECCION");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
-        jPanel1.add(TXTDIRECCION, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 140, -1));
+        jPanel1.add(TXTDIRECCION, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 140, -1));
+        jPanel1.add(l_estatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 280, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -172,10 +174,11 @@ public class Vendedores extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conectar = DriverManager.getConnection("jdbc:mysql://localhost/sic","root","");
+            Connection conectar = DriverManager.getConnection("jdbc:mysql://localhost/sicvendedores","root","");
 
-            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost/sic","root","");
-            java.sql.PreparedStatement pst = cn.prepareStatement("insert into vendedores values(?,?,?,?,?,?,?)");
+            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost/sicvendedores","root","");
+            java.sql.PreparedStatement pst;
+            pst = cn.prepareStatement("insert into vendedores1 values(?,?,?,?,?)");
 
             pst.setString(1, "0");
             pst.setString(2, TXTVENDEDOR.getText().trim());
@@ -194,7 +197,7 @@ public class Vendedores extends javax.swing.JFrame {
             TXTNIT.setText("");
             TXTESTAUS.setText("");
 
-            Label_status.setText("Registro exitoso");
+            l_estatus.setText("Registro exitoso");
 
         } catch (Exception e) {
 
@@ -206,8 +209,8 @@ public class Vendedores extends javax.swing.JFrame {
         try {
             String ID = txtid.getText().trim();
 
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/sic", "root", "");
-            PreparedStatement pst = cn.prepareStatement("update vendedores set codigo_vendedor=?, nombre_vendedor=?, direccion_vendedor=?,telefono_vendedor = ?, nit_vendedor = ?, estatus_vendedor = ? where ID = " + ID);
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/sicvendedores", "root", "");
+            PreparedStatement pst = cn.prepareStatement("update vendedores1 set codigo_vendedor=?, nombre_vendedor=?, direccion_vendedor=?,telefono_vendedor = ?, nit_vendedor = ?, estatus_vendedor = ? where ID = " + ID);
 
             pst.setString(1, TXTVENDEDOR.getText().trim());
             pst.setString(2, TXTNOMBRE.getText().trim());
@@ -218,7 +221,7 @@ public class Vendedores extends javax.swing.JFrame {
 
             pst.executeUpdate();
 
-            Label_status.setText("Modificación exitosa.");
+            l_estatus.setText("Modificación exitosa.");
 
         } catch (Exception e) {
         }
@@ -228,8 +231,8 @@ public class Vendedores extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/sic", "root", "");
-            PreparedStatement pst = cn.prepareStatement("delete from vendedores where ID = ?");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/sicvendedores", "root", "");
+            PreparedStatement pst = cn.prepareStatement("delete from vendedores1 where ID = ?");
 
             pst.setString(1, txtid.getText().trim());
             pst.executeUpdate();
@@ -240,7 +243,7 @@ public class Vendedores extends javax.swing.JFrame {
             TXTNIT.setText("");
             TXTESTAUS.setText("");
 
-            Label_status.setText("Registro eliminado.");
+            l_estatus.setText("Registro eliminado.");
 
         } catch (Exception e) {
         }
@@ -261,8 +264,8 @@ public class Vendedores extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/sic", "root", "");
-            PreparedStatement pst = cn.prepareStatement("select * from vendedores where ID = ?");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/sicvendedores", "root", "");
+            PreparedStatement pst = cn.prepareStatement("select * from vendedores1 where ID = ?");
             pst.setString(1, txtid.getText().trim());
 
             ResultSet rs = pst.executeQuery();
@@ -343,6 +346,7 @@ public class Vendedores extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel l_estatus;
     private javax.swing.JLabel label_estatus;
     private javax.swing.JTextField txtid;
     // End of variables declaration//GEN-END:variables

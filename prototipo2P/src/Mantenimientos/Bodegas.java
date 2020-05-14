@@ -52,6 +52,7 @@ public class Bodegas extends javax.swing.JFrame {
         txtnombre = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtestatus = new javax.swing.JTextField();
+        L_Status = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -131,6 +132,7 @@ public class Bodegas extends javax.swing.JFrame {
         jLabel7.setText("ESTATUS");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
         jPanel1.add(txtestatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 140, -1));
+        jPanel1.add(L_Status, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 310, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -153,26 +155,22 @@ public class Bodegas extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conectar = DriverManager.getConnection("jdbc:mysql://localhost/sic","root","");
+            //Class.forName("com.mysql.jdbc.Driver");
+            //Connection conectar = DriverManager.getConnection("jdbc:mysql://localhost/sicbodegas","root","");
 
-            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost/sic","root","");
-            java.sql.PreparedStatement pst = cn.prepareStatement("insert into bodegas values(?,?,?,?)");
-
+            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost/sicbodegas","root","");
+            java.sql.PreparedStatement pst = cn.prepareStatement("insert into bodegas1 values(?,?,?,?)");
             pst.setString(1, "0");
             pst.setString(2, txtbodega.getText().trim());
             pst.setString(3, txtnombre.getText().trim());
             pst.setString(4, txtestatus.getText().trim());
-           
 
             pst.executeUpdate();
 
             txtbodega.setText("");
             txtnombre.setText("");
-            txtestatus.setText("");
-          
-
-            Label_status.setText("Registro exitoso");
+            txtestatus.setText("");      
+            L_Status.setText("Registro exitoso");
 
         } catch (Exception e) {
 
@@ -184,8 +182,8 @@ public class Bodegas extends javax.swing.JFrame {
         try {
             String ID = txtid.getText().trim();
 
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/sic", "root", "");
-            PreparedStatement pst = cn.prepareStatement("update bodegas set codigo_bodega=?, nombre_bodega=?, estatus_bodega=? where ID = " + ID);
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/sicbodegas", "root", "");
+            PreparedStatement pst = cn.prepareStatement("update bodegas1 set codigo_bodega=?, nombre_bodega=?, estatus_bodega=? where ID = " + ID);
 
             pst.setString(1, txtbodega.getText().trim());
             pst.setString(2, txtnombre.getText().trim());
@@ -193,7 +191,7 @@ public class Bodegas extends javax.swing.JFrame {
            
             pst.executeUpdate();
 
-            Label_status.setText("Modificación exitosa.");
+            L_Status.setText("Modificación exitosa.");
 
         } catch (Exception e) {
         }
@@ -203,8 +201,8 @@ public class Bodegas extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/sic", "root", "");
-            PreparedStatement pst = cn.prepareStatement("delete from bodegas where ID = ?");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/sicbodegas", "root", "");
+            PreparedStatement pst = cn.prepareStatement("delete from bodegas1 where ID = ?");
 
             pst.setString(1, txtid.getText().trim());
             pst.executeUpdate();
@@ -213,7 +211,7 @@ public class Bodegas extends javax.swing.JFrame {
             txtestatus.setText("");
            
 
-            Label_status.setText("Registro eliminado.");
+            L_Status.setText("Registro eliminado.");
 
         } catch (Exception e) {
         }
@@ -234,8 +232,8 @@ public class Bodegas extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/sic", "root", "");
-            PreparedStatement pst = cn.prepareStatement("select * from bodegas where ID = ?");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/sicbodegas", "root", "");
+            PreparedStatement pst = cn.prepareStatement("select * from bodegas1 where ID = ?");
             pst.setString(1, txtid.getText().trim());
 
             ResultSet rs = pst.executeQuery();
@@ -292,6 +290,7 @@ public class Bodegas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel L_Status;
     private javax.swing.JLabel Label_status;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
